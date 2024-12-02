@@ -1,4 +1,4 @@
-testing edit
+# testing
 ## This allows me to use homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -6,8 +6,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Variables
 ####################################
 BREW_PREFIX=$(brew --prefix)
-
-EDITOR=${EDITOR:-nano}
+export EDITOR=nvim
 CONFIG_FILE=${CONFIG_FILE:-~/.zshrc}
 
 # Change this to dir where you house all git projects
@@ -62,6 +61,10 @@ alias re='refresh_function'
 ## brew upgrade <-- updates packages that brew installed
 alias brew up='brew update && brew upgrade'
 
+# Chezmoi dotfile manager
+alias dot='cd .local/share/chezmoi'
+alias cvi='chezmoi edit'
+
 # CLI - Random Aliases
 alias ..='cd ..'
 alias test='echo hello-world'
@@ -73,20 +76,29 @@ alias myips='ip addr'
 alias myip='myips'
 
 # CLI - Modify Files Aliases
-alias v='version'
+alias ver='version'
 alias mk='touch'
 alias create='touch'
 alias rename='mv'
 
 # Go into Config File to Edit Aliases
 alias vim='nvim'
+alias vi='nvim'
+alias v='nvim'
+alias vimdiff='nvim -d'
+alias vdif='vimdiff'
+alias vdiff='vimdiff'
 
 # List Aliases
+alias ls='ls --color=auto'
 alias lsl='ls -l'
-alias lsh='ls -h'
+alias lsh='ls -h' 
 alias lsa='ls -a'
 alias list='ls -l -h -a'
 alias l='list'
+
+# Grep (find) Aliases
+alias grep='grep --color=auto'
 
 # Python Aliases
 alias python='python3'
