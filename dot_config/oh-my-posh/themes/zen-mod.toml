@@ -1,4 +1,5 @@
 # For example themes and ideas: https://ohmyposh.dev/docs/themes
+# Themes in mac OS are located at {{ brew --prefix }}/share/oh-my-posh/themes
 # To convert json/yaml to toml: https://www.convertsimple.com/convert-json-to-toml/
 
 # How to define a bubble
