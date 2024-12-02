@@ -1,0 +1,95 @@
+# --- Secrets and Sensitive Files ---
+# Ansible Vault
+*.vault
+*.vault.yml
+*.vault.json
+
+# Environment Variables and Secrets
+.env
+.env.local
+.env.*.local
+*.env
+*.secrets
+*.key
+*.pem
+*.pfx
+*.crt
+*.cert
+*.csr
+*.gpg
+secrets.json
+
+# --- macOS Files ---
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# macOS Finder Thumbnails
+**/._*
+
+# macOS Metadata
+.Spotlight-V100
+.Trashes
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# --- Linux Files ---
+*~
+*.swp
+*.swo
+*.tmp
+*.bak
+*.old
+*.save
+.cache/
+# .config/
+# .local/
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+*.out
+*.err
+logs/
+
+# --- Windows Files ---
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+System Volume Information/
+*.lnk
+
+# --- General ---
+# Compiled Binaries and Build Files
+*.o
+*.so
+*.a
+*.out
+*.class
+*.jar
+*.pyc
+*.pyo
+*.pyd
+
+# Package Managers
+node_modules/
+vendor/
+*.lock
+*.tgz
+
+# Backup Files
+*.bak
+*.backup
+*.orig
+*.rej
+*.tar.gz
+
+# IDE and Editor Configurations
+.vscode/
+.idea/
+*.iml

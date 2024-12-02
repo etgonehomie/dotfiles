@@ -1,0 +1,205 @@
+# For example themes and ideas: https://ohmyposh.dev/docs/themes
+# To convert json/yaml to toml: https://www.convertsimple.com/convert-json-to-toml/
+
+# How to define a bubble
+# background = "#29315A"    # bubble background color
+# foreground = "#E64747"    # bubble text color
+# style = "diamond"            # creates bubble diamond template which is modified by leading/trailing diamond
+# leading_diamond = "\ue0b6"  # creates curved left side of bubble
+# trailing_diamond = "\ue0b4 " # creates curved right side of bubble
+
+console_title_template = '{{ .UserName }} @ {{ .HostName }}...{{ .Folder }} ({{ .Shell }})'
+version = 3
+final_space = true
+
+[secondary_prompt]
+  template = '❯❯ '
+  foreground = 'magenta'
+  background = 'transparent'
+
+[transient_prompt]
+  template = '❯ '
+  background = 'transparent'
+  foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  # Shows full path on transient line
+  [[blocks.segments]]
+    template = '{{ .Path }} '
+    foreground = 'blue'
+    background = 'transparent'
+    type = 'path'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      style = 'full'
+      
+  # Shows current user on transient line in bubble format    
+  [[blocks.segments]]
+    background = "#29315A"
+    foreground = "#E64747"
+    leading_diamond = "\ue0b6"
+    style = "diamond"
+    trailing_diamond = "\ue0b4 "
+    template = "{{ .UserName }}"
+    type = "text"
+  
+  # Shows execution time in bubble format 
+  # [[blocks.segments]]
+  #   background = "#29315A"
+  #   foreground = "#AEA4BF"
+  #   leading_diamond = "\ue0b6"
+  #   style = "diamond"
+  #   template = "{{ .FormattedMs }}"
+  #   trailing_diamond = "\ue0b4 "
+  #   type = "executiontime"
+
+  #   [blocks.segments.properties]
+  #     style = "austin"
+  #     threshold = 150
+
+  
+# Right theme bubble icons
+[[blocks]]
+  alignment = "right"
+  type = "prompt"
+
+  # # Shows current directoy in bubble
+  # [[blocks.segments]]
+  #   background = "#29315A"
+  #   foreground = "#3EC669"
+  #   leading_diamond = "\ue0b6"
+  #   style = "diamond"
+  #   template = " {{ .Path }}"
+  #   trailing_diamond = "\ue0b4"
+  #   type = "path"
+
+  #   [blocks.segments.properties]
+  #     style = "folder"
+
+  # Shows Git status and changes color depending on status
+  [[blocks.segments]]
+    background = "#29315A"
+    foreground = "#43CCEA"
+    foreground_templates = [
+      "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}",
+      "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}",
+      "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+      "{{ if gt .Behind 0 }}#B388FF{{ end }}"
+    ]
+    leading_diamond = " \ue0b6"
+    style = "diamond"
+    trailing_diamond = "\ue0b4"
+    template = " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} "
+    type = "git"
+
+    [blocks.segments.properties]
+      branch_max_length = 25
+      fetch_stash_count = true
+      fetch_status = true
+      fetch_upstream_icon = true
+
+  # Show languages used in current dir 
+  [[blocks.segments]]
+    background = "#29315A"
+    foreground = "#E4F34A"
+    leading_diamond = " \ue0b6"
+    style = "diamond"
+    template = "\ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}"
+    trailing_diamond = "\ue0b4"
+    type = "python"
+
+    [blocks.segments.properties]
+      fetch_version = false
+
+  [[blocks.segments]]
+    background = "#29315A"
+    foreground = "#7FD5EA"
+    leading_diamond = " \ue0b6"
+    style = "diamond"
+    template = "\ue626 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+    trailing_diamond = "\ue0b4"
+    type = "go"
+
+    [blocks.segments.properties]
+      fetch_version = false
+
+  [[blocks.segments]]
+    background = "#29315A"
+    foreground = "#42E66C"
+    leading_diamond = " \ue0b6"
+    style = "diamond"
+    template = "\ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}"
+    trailing_diamond = "\ue0b4"
+    type = "node"
+
+    [blocks.segments.properties]
+      fetch_version = false
+
+  [[blocks.segments]]
+    background = "#29315A"
+    foreground = "#E64747"
+    leading_diamond = " \ue0b6"
+    style = "diamond"
+    template = "\ue791 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+    trailing_diamond = "\ue0b4"
+    type = "ruby"
+
+    [blocks.segments.properties]
+      fetch_version = false
+  
+  # # Show remaining battery
+  # [[blocks.segments]]
+  #   background = "#29315A"
+  #   foreground = "#9B6BDF"
+  #   foreground_templates = [
+  #     "{{if eq \"Charging\" .State.String}}#40c4ff{{end}}",
+  #     "{{if eq \"Discharging\" .State.String}}#ff5722{{end}}",
+  #     "{{if eq \"Full\" .State.String}}#4caf50{{end}}"
+  #   ]
+  #   leading_diamond = " \ue0b6"
+  #   style = "diamond"
+  #   template = "{{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}{{ .Error }}"
+  #   trailing_diamond = "\ue0b4"
+  #   type = "battery"
+
+  #   [blocks.segments.properties]
+  #     charged_icon = " "
+  #     charging_icon = "⇡ "
+  #     discharging_icon = "⇣ "
+
+
+[[blocks]]
+  type = 'rprompt'
+  overflow = 'hidden'
+
+  [[blocks.segments]]
+    template = '{{ .FormattedMs }}'
+    foreground = 'yellow'
+    background = 'transparent'
+    type = 'executiontime'
+    style = 'plain'
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
+      threshold = 5000
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    template = '❯'
+    background = 'transparent'
+    type = 'text'
+    style = 'plain'
+    foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
+
+    [blocks.segments.properties]
+      cache_duration = 'none'
