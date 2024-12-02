@@ -62,7 +62,7 @@ alias re='refresh_function'
 alias brew up='brew update && brew upgrade'
 
 # Chezmoi dotfile manager
-alias dot='cd .local/share/chezmoi'
+alias dot='cd $HOME/.local/share/chezmoi'
 alias cvi='chezmoi edit'
 
 # CLI - Random Aliases
