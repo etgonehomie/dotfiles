@@ -10,7 +10,7 @@ export EDITOR=nvim
 CONFIG_FILE=${CONFIG_FILE:-~/.zshrc}
 
 # Change this to dir where you house all git projects
-PROJ_DIR="~/git-projects"     
+PROJ_DIR="~/git-projects/personal"     
 
 # Change this to be .config/oh-my-posh/[theme.toml/yaml/json] if desired
 # Info for how to use this theming: https://ohmyposh.dev/docs
@@ -28,7 +28,9 @@ cd ~
 
 # Set quick file path movement for projects
 alias auto='cd $PROJ_DIR/windsurf/auto-image'
-alias react='cd $PROJ_DIR/react'
+alias react='cd $PROJ_DIR/react-learning/auto-image'
+alias autoimage='react'
+alias auto-image='react'
 alias cc='cd $PROJ_DIR/cc-churning-app'
 alias churn=cc
 alias tools='cd $PROJ_DIR/tools'
